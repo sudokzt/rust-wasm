@@ -7,7 +7,12 @@ pub fn add(a: i32, b: i32) -> i32 {
     a + b
 }
 
-#[wasm_bindgen(raw_module = "./index.js")]
+#[wasm_bindgen]
+pub fn hoge(a: i32, b: i32) -> i32 {
+    a + b
+}
+
+#[wasm_bindgen(module = "/src/test.js")]
 extern "C" {
     fn date_now() -> f64;
 }
