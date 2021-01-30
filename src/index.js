@@ -1,6 +1,6 @@
-import("./wasm_entry").then((module) => {
-  const { add, get_timestamp,bare } = module;
-  console.log(module);
-  console.log(add(1, 2));
-  console.log(get_timestamp());
-});
+import * as modules from "./wasm_entry";
+
+const { add, get_timestamp, bare } = modules;
+console.log(modules);
+console.log(add(1, 2));
+console.log(get_timestamp());

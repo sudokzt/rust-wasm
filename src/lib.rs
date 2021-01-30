@@ -2,7 +2,7 @@ extern crate wasm_bindgen;
 
 use wasm_bindgen::prelude::*;
 
-// fire when starting
+// Called when the wasm module is instantiated
 #[wasm_bindgen(start)]
 pub fn run() {
     bare();
@@ -28,16 +28,17 @@ extern "C" {
     fn multi_log(a: u32, b: u32);
 }
 
+// export function to use in JS(SIMPLE)
+#[wasm_bindgen]
+pub fn add(a: i32, b: i32) -> i32 {
+    a + b
+}
+
 // use exported module from JS
 #[wasm_bindgen(module = "/src/test.js")]
 extern "C" {
     #[wasm_bindgen(js_name = dateNow)]
     fn date_now() -> f64;
-}
-
-#[wasm_bindgen]
-pub fn add(a: i32, b: i32) -> i32 {
-    a + b
 }
 
 #[wasm_bindgen]
