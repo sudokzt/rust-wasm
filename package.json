@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build:wasm": "cargo build --target wasm32-unknown-unknown --release",
-    "production:wasm": "wasm-bindgen target/wasm32-unknown-unknown/release/wasm_entry.wasm --out-dir src --no-typescript",
+    "postbuild:wasm": "wasm-bindgen target/wasm32-unknown-unknown/release/wasm_entry.wasm --out-dir src --no-typescript",
     "build:js": "webpack --mode production",
     "build": "run-s build:wasm build:js",
-    "dev:wasm": "cargo watch -i 'src/{wasm_entry_bg.wasm,wasm_entry.js}' -s 'npm run build:wasm'",
+    "dev:wasm": "cargo watch -w './src/lib.rs' -s 'npm run build:wasm'",
     "dev:js": "webpack serve --mode development",
     "dev": "run-p dev:wasm dev:js",
     "test": "echo \"Error: no test specified\" && exit 1"
