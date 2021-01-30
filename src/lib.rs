@@ -35,8 +35,9 @@ pub fn add(a: i32, b: i32) -> i32 {
 }
 
 // use exported module from JS
-#[wasm_bindgen(module = "/src/test.js")]
+#[wasm_bindgen(module = "/src/assets/js/test.js")]
 extern "C" {
+    // use name that defined in JS
     #[wasm_bindgen(js_name = dateNow)]
     fn date_now() -> f64;
 }
