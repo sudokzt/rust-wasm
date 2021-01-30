@@ -8,6 +8,7 @@ edition = "2018"
 
 [dependencies]
 tinymt = { git = "https://github.com/mizdra/rust-tinymt", tag = "0.1.0" }
+wasm-bindgen = "0.2"
 
 [lib]
 crate-type=["cdylib"]

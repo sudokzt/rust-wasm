@@ -1,0 +1,62 @@
+Arguments: 
+  /Users/mishimakazuto/.nodebrew/node/v14.15.1/bin/node /Users/mishimakazuto/.nodebrew/current/bin/yarn
+
+PATH: 
+  //Users/mishimakazuto/.deno/bin:/Users/mishimakazuto/.cargo/bin:/Users/mishimakazuto/.nodebrew/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/mishimakazuto/go:/Users/mishimakazuto/go/bin:/usr/local/go/bin:/Users/mishimakazuto/Library/Android/sdk/emulator:/Users/mishimakazuto/Library/Android/sdk/tools:/Users/mishimakazuto/Library/Android/sdk/tools/bin:/Users/mishimakazuto/Library/Android/sdk/platform-tools
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.15.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/html-webpack-plugin: ETIMEDOUT
+      at Timeout._onTimeout (/Users/mishimakazuto/.nodebrew/node/v14.15.1/lib/node_modules/yarn/lib/cli.js:141322:19)
+      at listOnTimeout (internal/timers.js:554:17)
+      at processTimers (internal/timers.js:497:7)
+
+npm manifest: 
+  {
+    "name": "wasm-entry",
+    "version": "1.0.0",
+    "description": "## 実行方法",
+    "main": "index.js",
+    "scripts": {
+      "build:wasm": "cargo build --target wasm32-unknown-unknown --release",
+      "production:wasm": "wasm-bindgen target/wasm32-unknown-unknown/release/wasm_entry.wasm --out-dir src --no-typescript",
+      "build:js": "webpack --mode production",
+      "build": "run-s build:wasm build:js",
+      "dev:wasm": "cargo watch -i 'src/{wasm_entry_bg.wasm,wasm_entry.js}' -s 'npm run build:wasm'",
+      "dev:js": "webpack serve --mode development",
+      "dev": "run-p dev:wasm dev:js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/sudokzt/rust-wasm.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/sudokzt/rust-wasm/issues"
+    },
+    "homepage": "https://github.com/sudokzt/rust-wasm#readme",
+    "devDependencies": {
+      "html-webpack-plugin": "^4.5.1",
+      "npm-run-all": "^4.1.5",
+      "webpack": "^5.17.0",
+      "webpack-cli": "^4.4.0",
+      "webpack-dev-server": "^3.11.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

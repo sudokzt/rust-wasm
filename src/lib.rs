@@ -1,29 +1,48 @@
-#[no_mangle]
+extern crate wasm_bindgen;
+
+use wasm_bindgen::prelude::*;
+
+// Called when the wasm module is instantiated
+#[wasm_bindgen(start)]
+pub fn run() {
+    bare();
+}
+
+pub fn bare() {
+    log("Hello WASM");
+    log32(100);
+    multi_log(10, 20);
+}
+
+#[wasm_bindgen]
+extern "C" {
+    // bind to namespace
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &str);
+
+    // bind to namespace and method name
+    #[wasm_bindgen(js_namespace = console, js_name = log)]
+    fn log32(a: u32);
+
+    #[wasm_bindgen(js_namespace = console, js_name = log)]
+    fn multi_log(a: u32, b: u32);
+}
+
+// export function to use in JS(SIMPLE)
+#[wasm_bindgen]
 pub fn add(a: i32, b: i32) -> i32 {
     a + b
 }
 
-// signature: rust understands another lang functions
+// use exported module from JS
+#[wasm_bindgen(module = "/src/assets/js/test.js")]
 extern "C" {
+    // use name that defined in JS
+    #[wasm_bindgen(js_name = dateNow)]
     fn date_now() -> f64;
 }
 
-#[no_mangle]
+#[wasm_bindgen]
 pub fn get_timestamp() -> f64 {
-    unsafe { date_now() }
-}
-
-extern crate tinymt;
-use tinymt::tinymt32;
-
-#[no_mangle]
-pub fn rand() -> u32 {
-    // TinyMT という乱数生成方式
-    let param = tinymt32::Param {
-        mat1: 0x8F7011EE,
-        mat2: 0xFC78FF1F,
-        tmat: 0x3793fdff,
-    };
-    let seed = 1;
-    tinymt32::from_seed(param, seed).gen()
+    date_now()
 }
