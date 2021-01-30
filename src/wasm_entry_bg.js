@@ -45,3 +45,11 @@ export const __wbg_log_afa9c29474114568 = function(arg0, arg1) {
     console.log(getStringFromWasm0(arg0, arg1));
 };
 
+export const __wbg_log_1bd27af74f7f8fe6 = function(arg0) {
+    console.log(arg0 >>> 0);
+};
+
+export const __wbg_log_8e1d4403abed944e = function(arg0, arg1) {
+    console.log(arg0 >>> 0, arg1 >>> 0);
+};
+
